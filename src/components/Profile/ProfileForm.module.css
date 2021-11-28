@@ -1,0 +1,14 @@
+.profile_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+  border: 1px solid lightgray;
+}

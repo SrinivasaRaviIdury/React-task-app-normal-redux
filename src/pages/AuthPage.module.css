@@ -1,0 +1,15 @@
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.form {
+  flex-grow: 2;
+}
+.img {
+  flex-grow: 1;
+}
+.img img {
+  height: 60vh;
+  object-fit: contain;
+}

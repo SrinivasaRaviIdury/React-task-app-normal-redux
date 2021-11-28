@@ -1,2 +1,2 @@
-# React-task-app-normal-redux
+# React-Task-Application
 Created with CodeSandbox

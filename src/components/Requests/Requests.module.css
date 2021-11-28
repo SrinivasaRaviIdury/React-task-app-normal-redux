@@ -1,0 +1,11 @@
+.requests {
+  text-align: center;
+}
+.link {
+  text-decoration: none;
+  color: rgb(31, 56, 197);
+  cursor: pointer;
+}
+.link:hover {
+  color: rgb(133, 47, 47);
+}
