@@ -7,25 +7,23 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const isLoggedIn = useSelector((state) => {
-    return state.auth.isLoggedIn;
-  });
+  const auth = useSelector((state) => state);
   return (
     <Layout>
       <Switch>
         <Route path="/" exact>
-          {isLoggedIn && <HomePage />}
-          {!isLoggedIn && <Redirect to="/auth" />}
+          {auth.isLoggedIn && <HomePage />}
+          {!auth.isLoggedIn && <Redirect to="/auth" />}
         </Route>
-        {!isLoggedIn && (
+        {!auth.isLoggedIn && (
           <Route path="/auth">
             <AuthPage />
           </Route>
         )}
 
         <Route path="/profile">
-          {isLoggedIn && <UserProfile />}
-          {!isLoggedIn && <Redirect to="/auth" />}
+          {auth.isLoggedIn && <UserProfile />}
+          {!auth.isLoggedIn && <Redirect to="/auth" />}
         </Route>
         <Route path="/request/:requestId">
           <RequestDetails />

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import classes from "./AuthForm.module.css";
-import { authAction } from "../../store/auth-slice";
+// import { authAction } from "../../store/auth-slice";
 import { useHistory } from "react-router-dom";
 
 const API_KEY = "AIzaSyAu5FAPSumA-HlwErQb-a_oXg0qtHehizw";
@@ -61,13 +61,14 @@ const AuthForm = () => {
           }
         })
         .then((data) => {
-          dispatch(
-            authAction.loginHandler({
+          dispatch({
+            type: "LOG_IN",
+            payload: {
               token: data.idToken,
               userName: data.email.split("@")[0],
               email: data.email
-            })
-          );
+            }
+          });
           history.replace("/");
         });
     } else {

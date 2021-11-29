@@ -2,21 +2,19 @@ import classes from "./ProfileForm.module.css";
 import { useSelector } from "react-redux";
 import product_requests from "../Requests/data";
 const ProfileForm = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const userName = useSelector((state) => state.auth.userName);
-  const email = useSelector((state) => state.auth.email);
+  const auth = useSelector((state) => state);
   return (
     <div className={classes.profile_form}>
       <h2> User Profile</h2>
-      {isLoggedIn && (
+      {auth.isLoggedIn && (
         <table>
           <tr>
             <th>User Name</th>
-            <td>{userName}</td>
+            <td>{auth.userName}</td>
           </tr>
           <tr>
             <th>User Email</th>
-            <td>{email}</td>
+            <td>{auth.email}</td>
           </tr>
           <tr>
             <th>Number of Request</th>

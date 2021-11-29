@@ -6,11 +6,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { authAction } from "../../store/auth-slice";
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => {
-    return state.auth.isLoggedIn;
-  });
+  const auth = useSelector((state) => state);
   const logoutHandler = () => {
-    dispatch(authAction.logoutHandler());
+    dispatch({ type: "LOG_OUT" });
   };
 
   return (
@@ -20,13 +18,13 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
-          {!isLoggedIn && (
+          {!auth.isLoggedIn && (
             <li>
               <Link to="/auth">Login / Signup</Link>
             </li>
           )}
 
-          {isLoggedIn && (
+          {auth.isLoggedIn && (
             <Fragment>
               <li>
                 <Link to="/">Home</Link>
