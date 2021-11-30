@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./MainNavigation.module.css";
 import { Fragment } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { authAction } from "../../store/auth-slice";
 const MainNavigation = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state);
