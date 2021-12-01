@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import classes from "./Requests.module.css";
-import product_requests from "./data";
+// import product_requests from "./data";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Requests = () => {
-  const [requests, setRequests] = useState(product_requests);
+  const { requestReducer: requests } = useSelector((state) => state);
 
   return (
     <div className={classes.requests}>

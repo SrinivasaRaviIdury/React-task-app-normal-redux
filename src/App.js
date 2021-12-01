@@ -7,7 +7,7 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const auth = useSelector((state) => state);
+  const { authReducer: auth } = useSelector((state) => state);
   return (
     <Layout>
       <Switch>

@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 const MainNavigation = () => {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state);
+  const { authReducer: auth } = useSelector((state) => state);
   const logoutHandler = () => {
     dispatch({ type: "LOG_OUT" });
   };

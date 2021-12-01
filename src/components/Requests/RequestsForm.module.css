@@ -1,0 +1,9 @@
+.requestForm {
+  text-align: center;
+  margin: 2rem;
+}
+.requestForm table {
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}

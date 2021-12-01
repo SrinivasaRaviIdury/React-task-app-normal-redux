@@ -1,11 +1,12 @@
-import { Fragment } from "react";
+import RequestsForm from "../components/Requests/RequestsForm";
 import StartingPageContent from "../components/StartingPage/StartingPageContent";
 import classes from "./HomePage.module.css";
 const HomePage = () => {
   return (
-    <Fragment>
+    <div className={classes.homePage}>
       <StartingPageContent />
-    </Fragment>
+      <RequestsForm />
+    </div>
   );
 };
 

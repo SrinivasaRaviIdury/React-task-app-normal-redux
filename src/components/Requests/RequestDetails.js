@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import product_requests from "./data";
 import HighlightedRequest from "./HighlightedRequest";
 const RequestDetails = () => {
   const params = useParams();
-  const request = product_requests.find(
+  const { requestReducer: requests } = useSelector((state) => state);
+  const request = requests.find(
     (request) => request.id === Number(params.requestId)
   );
   console.log(request);
