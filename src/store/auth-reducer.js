@@ -38,7 +38,7 @@ export const fetchSignInData = (
   history
 ) => {
   return async (dispatch) => {
-    const response = fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify({
         email: enteredEmail,
@@ -49,10 +49,6 @@ export const fetchSignInData = (
         "Content-Type": "application/json"
       }
     });
-    if (!response.ok) {
-      alert("Something wrong");
-      return;
-    }
     const data = await response.json();
     await dispatch({
       type: "LOG_IN",
