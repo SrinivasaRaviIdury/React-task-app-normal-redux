@@ -3,14 +3,16 @@ import { useDispatch } from "react-redux";
 import classes from "./AuthForm.module.css";
 // import { authAction } from "../../store/auth-slice";
 import { useHistory } from "react-router-dom";
+import { fetchSignInData } from "../../store/auth-reducer";
+// import { fetchSignInData } from "../../store/auth-reducer";
 
 const API_KEY = "AIzaSyAu5FAPSumA-HlwErQb-a_oXg0qtHehizw";
 
 const AuthForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const switchAuthModeHandler = () => {
@@ -30,47 +32,49 @@ const AuthForm = () => {
       } else {
         url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
       }
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then((res) => {
-          setIsLoading(false);
-          if (res.ok) {
-            return res.json();
-          } else {
-            res
-              .json()
-              .then((data) => {
-                let errorMessage = "Authentication Failed";
-                if (data && data.error && data.error.message) {
-                  errorMessage = data.error.message;
-                }
-                throw new Error(errorMessage);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          }
-        })
-        .then((data) => {
-          dispatch({
-            type: "LOG_IN",
-            payload: {
-              token: data.idToken,
-              userName: data.email.split("@")[0],
-              email: data.email
-            }
-          });
-          history.replace("/");
-        });
+      // fetch(url, {
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     email: enteredEmail,
+      //     password: enteredPassword,
+      //     returnSecureToken: true
+      //   }),
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   }
+      // })
+      //   .then((res) => {
+      //     setIsLoading(false);
+      //     if (res.ok) {
+      //       return res.json();
+      //     } else {
+      //       res
+      //         .json()
+      //         .then((data) => {
+      //           let errorMessage = "Authentication Failed";
+      //           if (data && data.error && data.error.message) {
+      //             errorMessage = data.error.message;
+      //           }
+      //           throw new Error(errorMessage);
+      //         })
+      //         .catch((err) => {
+      //           alert(err.message);
+      //         });
+      //     }
+      //   })
+      //   .then((data) => {
+      //     dispatch({
+      //       type: "LOG_IN",
+      //       payload: {
+      //         token: data.idToken,
+      //         userName: data.email.split("@")[0],
+      //         email: data.email
+      //       }
+      //     });
+      //     history.replace("/");
+      //   });
+      const runHistory = () => history.replace("/");
+      dispatch(fetchSignInData(url, enteredEmail, enteredPassword, runHistory));
     } else {
       alert("Please Enter Valid Email/Password");
     }

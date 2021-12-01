@@ -30,3 +30,38 @@ export const authReducer = (state = initialState, action) => {
   }
   return state;
 };
+
+export const fetchSignInData = (
+  url,
+  enteredEmail,
+  enteredPassword,
+  history
+) => {
+  return async (dispatch) => {
+    const response = fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    if (!response.ok) {
+      alert("Something wrong");
+      return;
+    }
+    const data = await response.json();
+    await dispatch({
+      type: "LOG_IN",
+      payload: {
+        token: data.idToken,
+        userName: data.email.split("@")[0],
+        email: data.email
+      }
+    });
+    await history();
+  };
+};

@@ -2,7 +2,9 @@ import classes from "./ProfileForm.module.css";
 import { useSelector } from "react-redux";
 import product_requests from "../Requests/data";
 const ProfileForm = () => {
-  const auth = useSelector((state) => state);
+  const { authReducer: auth, requestReducer: requests } = useSelector(
+    (state) => state
+  );
   return (
     <div className={classes.profile_form}>
       <h2> User Profile</h2>
@@ -18,7 +20,7 @@ const ProfileForm = () => {
           </tr>
           <tr>
             <th>Number of Request</th>
-            <td>{product_requests.length}</td>
+            <td>{requests.length}</td>
           </tr>
         </table>
       )}
